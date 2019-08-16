@@ -1,12 +1,13 @@
 # Raspberry-WIFI-hotspot
 A Raspberry WIFI access point (hotspot) and WIFI client at the same time
 
-##1. Install hostapd and dnsmasq
+## 1. Install hostapd and dnsmasq
+
 Install the hostapd access point daemon and the dnsmasq dhcp service.
-
+```
 sudo apt-get install hostapd dnsmasq 
-
-##2. Edit /etc/dhcpd.conf
+```
+## 2. Edit /etc/dhcpd.conf
 
 Set a static IP address (192.168.50.1)
 ```
@@ -14,7 +15,7 @@ interface uap0
 	static ip_address=192.168.50.1/24
         nohook wpa_supplicant
 ```
-##2. Create a new /etc/dnsmasq.conf and add the following to it:
+## 3. Create a new /etc/dnsmasq.conf and add the following to it:
 ```
 interface=lo,uap0               #Use interfaces lo and uap0
 bind-interfaces                 #Bind to the interfaces
@@ -24,7 +25,7 @@ bogus-priv                      #Never forward addresses in the non-routed addre
 # Assign IP addresses between 192.168.50.2 and 192.168.50.150 with a 12-hour lease time
 dhcp-range=192.168.50.2,192.168.50.150,12h
 ```
-##3. Create file /etc/hostapd/hostapd.conf and add the following:
+## 4. Create file /etc/hostapd/hostapd.conf and add the following:
 
 Important Note: The channel written here MUST match the channel of the wifi that you connect to in client mode (via wpa-supplicant). If the channels for your AP and STA mode services do not match, then one or both of them will not run. This is because there is only one physical antenna. It cannot cover two channels at once.
 ```
@@ -57,11 +58,11 @@ driver=nl80211
 # Enable 40MHz channels with 20ns guard interval
 #ht_capab=[HT40][SHORT-GI-20][DSSS_CCK-40]
 ```
-##4. Add a line to /etc/default/hostapd
+## 5. Add a line to /etc/default/hostapd
 ```
 DAEMON_CONF="/etc/hostapd/hostapd.conf"
 ```
-##5. Create a startup script.
+## 6. Create a startup script.
 
 Add a new file /usrUlocal/bin/wifistart (or whatever you like)
 ```
