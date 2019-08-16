@@ -64,7 +64,7 @@ DAEMON_CONF="/etc/hostapd/hostapd.conf"
 ```
 ## 6. Create a startup script.
 
-Add a new file /usrUlocal/bin/wifistart (or whatever you like)
+Add a new file /usr/local/bin/wifi_hotspot_start (or whatever you like)
 ```
 #!/bin/bash
 
