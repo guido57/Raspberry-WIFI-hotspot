@@ -7,7 +7,7 @@ Install the hostapd access point daemon and the dnsmasq dhcp service.
 ```
 sudo apt-get install hostapd dnsmasq 
 ```
-## 2. Edit /etc/dhcpd.conf
+## 2. Edit /etc/dhcpcd.conf
 
 Set a static IP address (192.168.50.1)
 ```
