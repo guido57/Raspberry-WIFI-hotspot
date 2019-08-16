@@ -106,3 +106,10 @@ echo "Starting dnsmasq service..."
 systemctl start dnsmasq.service
 echo "wifistart DONE"
 ```
+## 7. Start at boot
+
+Add the following to your /etc/rc.local script above the exit 0 line (note the spacing between "/bin/bash" and "/usr/local/bin/wifistart"):
+
+```
+/bin/bash /usr/local/bin/wifistart
+```
