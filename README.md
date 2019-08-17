@@ -37,7 +37,7 @@ ssid=yourSSIDhere
 wpa_passphrase=passwordBetween8and64charactersLong
 # This is the name of the WiFi interface we configured above
 interface=uap0
-# Use the 2.4GHz band (I think you can use in ag mode to get the 5GHz band as well, but I have not tested this yet)
+# Use the 2.4GHz band (but I have not tested 5Ghz band yet)
 hw_mode=g
 # Accept all MAC addresses
 macaddr_acl=0
