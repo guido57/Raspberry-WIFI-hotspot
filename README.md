@@ -15,7 +15,12 @@ interface uap0
 	static ip_address=192.168.50.1/24
         nohook wpa_supplicant
 ```
-## 3. Create a new /etc/dnsmasq.conf and add the following to it:
+## 3. Unmask hostapd
+When installed, hostapd service is masked. So unmask it!
+```
+sudo systemctl unmask hostapd
+```
+## 4. Create a new /etc/dnsmasq.conf and add the following to it:
 ```
 interface=lo,uap0               #Use interfaces lo and uap0
 bind-interfaces                 #Bind to the interfaces
@@ -25,7 +30,7 @@ bogus-priv                      #Never forward addresses in the non-routed addre
 # Assign IP addresses between 192.168.50.2 and 192.168.50.150 with a 12-hour lease time
 dhcp-range=192.168.50.2,192.168.50.150,12h
 ```
-## 4. Create file /etc/hostapd/hostapd.conf and add the following:
+## 5. Create file /etc/hostapd/hostapd.conf and add the following:
 
 Important Note: The channel written here MUST match the channel of the wifi that you connect to in client mode (via wpa-supplicant). If the channels for your AP and STA mode services do not match, then one or both of them will not run. This is because there is only one physical antenna. It cannot cover two channels at once.
 ```
@@ -58,11 +63,11 @@ driver=nl80211
 # Enable 40MHz channels with 20ns guard interval
 #ht_capab=[HT40][SHORT-GI-20][DSSS_CCK-40]
 ```
-## 5. Add a line to /etc/default/hostapd
+## 6. Add a line to /etc/default/hostapd
 ```
 DAEMON_CONF="/etc/hostapd/hostapd.conf"
 ```
-## 6. Create a startup script.
+## 7. Create a startup script.
 
 Add a new file /usr/local/bin/wifi_hotspot_start (or whatever you like)
 ```
@@ -106,7 +111,7 @@ echo "Starting dnsmasq service..."
 systemctl start dnsmasq.service
 echo "wifi_hotspot_start DONE"
 ```
-## 7. Start at boot
+## 8. Start at boot
 
 Add the following to your /etc/rc.local script above the exit 0 line (note the spacing between "/bin/bash" and "/usr/local/bin/wifi_hotspot_start"):
 
