@@ -32,9 +32,9 @@ Important Note: The channel written here MUST match the channel of the wifi that
 # Set the channel (frequency) of the host access point
 channel=1
 # Set the SSID broadcast by your access point (replace with your own, of course)
-ssid=yourSSIDhere
+ssid=wifipi
 # This sets the passphrase for your access point (again, use your own)
-wpa_passphrase=passwordBetween8and64charactersLong
+wpa_passphrase=raspberry
 # This is the name of the WiFi interface we configured above
 interface=uap0
 # Use the 2.4GHz band (but I have not tested 5Ghz band yet)
